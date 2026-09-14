@@ -1,79 +1,72 @@
 # Setup Guide
 
-> **This file is read by the automated evaluation pipeline. Be precise and complete.**
-
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
+Before running CyberSentinel, install:
 
-- [ ] [e.g., Python 3.11+]
-- [ ] [e.g., Node.js 18+]
-- [ ] [e.g., Docker Desktop]
-- [ ] [e.g., An IBM Cloud account with watsonx.ai access]
+- Python 3.10 or later
+- Node.js LTS
+- Git
 
-## Environment Variables
-
-Copy `.env.example` to `.env` and fill in the values:
+## 1. Clone the Repository
 
 ```bash
-cp .env.example .env
-```
+git clone <YOUR_REPOSITORY_URL>
+cd bob-ai-hackathon-cybersentinel
 
-| Variable | Description | Required |
-|---|---|---|
-| `WATSONX_API_KEY` | Your IBM watsonx.ai API key | Yes |
-| `WATSONX_PROJECT_ID` | Your watsonx.ai project ID | Yes |
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `SLACK_WEBHOOK_URL` | Slack webhook for alerts | No |
-
-## Installation
+## 2. Backend Setup
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/[your-org]/[your-repo].git
-cd [your-repo]
+cd src/backend
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload
+Backend : http://127.0.0.1.:8000
+API Documentation : http://127.0.0.1.:8000/docs
 
-# 2. Install backend dependencies
-[your command — e.g.: pip install -r requirements.txt]
-
-# 3. Install frontend dependencies (if applicable)
-[your command — e.g.: cd frontend && npm install]
-
-# 4. Set up the database (if applicable)
-[your command — e.g.: python manage.py migrate]
-```
-
-## Running the Application
+## 3. Frontend Setup
 
 ```bash
-# Start the backend
-[your command — e.g.: uvicorn app.main:app --reload]
+cd src/frontend
+npm.cmd install
+npm.cmd run dev
+frontend : http://localhost:5173
 
-# Start the frontend (in a separate terminal, if applicable)
-[your command — e.g.: cd frontend && npm run dev]
-```
+### 4. Environment Variables
 
-The application will be available at: `http://localhost:[PORT]`
+```markdown
 
-## Running Tests
+The current hackathon MVP does not require production credentials or external API keys.
+
+If environment-specific configuration is required in the future, use `.env.example` as the reference.
+
+Do not commit real `.env` files or credentials to the repository.
+
+## 5. Verification
+
+After starting both services:
+
+1. Open the frontend.
+2. Confirm that the Dashboard loads.
+3. Open the Alerts page.
+4. Click **Ingest Alerts**.
+5. Verify that alerts are processed.
+6. Open the Incidents page.
+7. Open an incident and verify its investigation details.
+8. Check prioritisation, MITRE ATT&CK mapping, and BLUF information.
+
+## 6. Troubleshooting
+
+### Python command not found
 
 ```bash
-[your test command — e.g.: pytest tests/ -v]
-```
+python --version
+cd src/backend python -m pip install -r requirments.txt
+node --version
+npm.cmd install
+npm.cmd run dev
+ API : http://127.0.0.1.:8000/docs
+ Running backend :http://127.0.0.1.:8000
 
-## Quick Demo (Optional)
-
-If you have a demo script or sample data to showcase the project quickly:
-
-```bash
-[e.g.: python demo/seed_demo_data.py]
-[e.g.: open http://localhost:8000/demo]
-```
-
-## Troubleshooting
-
-| Issue | Solution |
-|---|---|
-| [e.g., `ModuleNotFoundError`] | [e.g., Run `pip install -r requirements.txt` again] |
-| [e.g., Database connection refused] | [e.g., Ensure PostgreSQL is running: `docker compose up db`] |
-| [e.g., watsonx.ai 401 error] | [e.g., Check `WATSONX_API_KEY` in your `.env` file] |
+ ## 7. Running the complete Application
+ Backend : cd src/backend python -m uvicorn main:app --reload
+ frontend : cd src/frontend npm.cmd run dev

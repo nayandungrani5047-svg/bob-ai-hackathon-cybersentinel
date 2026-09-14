@@ -1,6 +1,6 @@
-# 🚀 [Your Project Title Here]
+# 🚀 CyberSentinel — D2 Threat Intelligence Assistant
 
-> ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
+> An AI-powered defensive threat intelligence assistant for alert correlation, prioritisation, MITRE ATT&CK mapping, and investigation support.
 
 ---
 
@@ -8,36 +8,32 @@
 
 | Field | Value |
 |---|---|
-| **Team Name** | [Your Team Name] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+| **Team Name** | CyberSentinel |
+| **Track** | AI |
+| **Team Lead** | Nayan Prakashbhai Dungrani — npdpatel203@gmail.com |
+| **Members** | Nayan Prakashbhai Dungrani, Shashvat Bharatbhai Sutariya, Ridham Jayantibhai Katrodiya, Vraj Kantilal Koringa |
 
 ---
 
 ## 🎯 Problem Statement
 
-> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
-
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
+Defence and security analysts can receive large volumes of alerts from SIEM systems, cyber sensors, satellite feeds, and intelligence reports in different formats. Manually reviewing and correlating these alerts makes it difficult to identify genuine threats quickly while false positives consume valuable investigation time.
 
 ---
 
 ## 💡 Solution
 
-> In 2–3 sentences: What did you build? How does it solve the problem above?
-
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
+CyberSentinel is an AI-powered threat intelligence assistant that processes synthetic multi-source alerts, normalizes and correlates them, identifies likely genuine threats and false positives, and prioritizes incidents using weighted scoring. It also maps identified threats to MITRE ATT&CK techniques and provides investigation-focused BLUF summaries.
 
 ---
 
 ## ✨ Key Features
 
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
-- **Feature 5:** [Optional]
+- **Multi-source Alert Ingestion:** Ingests synthetic alerts representing different threat intelligence sources.
+- **Alert Correlation:** Normalizes and correlates related alerts to identify meaningful incidents.
+- **Threat Prioritisation:** Uses weighted scoring to classify incidents into risk levels.
+- **MITRE ATT&CK Mapping:** Maps identified threat activity to relevant MITRE ATT&CK techniques.
+- **Investigation & BLUF:** Provides an investigation view with concise BLUF summaries for analysts.
 
 ---
 
@@ -45,53 +41,47 @@
 
 | Category | Technologies |
 |---|---|
-| **Languages** | [e.g., Python, TypeScript] |
-| **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
+| **Languages** | Python, JavaScript |
+| **Frameworks** | FastAPI, React, Vite, Tailwind CSS |
+| **IBM Technologies** | IBM Bob |
+| **Databases** | SQLite |
+| **Other** | Docker, GitHub Actions, Chart.js, Synthetic JSON/CSV data |
 
 ---
 
 ## 📁 Repository Structure
 
-```
-├── src/                  # All source code
-├── docs/                 # Written documentation
+```text
+├── src/
+│   ├── backend/           # FastAPI backend and threat analysis pipeline
+│   └── frontend/          # React frontend dashboard
+├── docs/                  # Written documentation
 │   ├── problem-statement.md
 │   ├── solution-overview.md
 │   ├── architecture.md
 │   └── setup-guide.md
-├── demo/                 # Demo artifacts
-│   ├── screenshots/      # App screenshots
-│   └── demo-video-link.txt  # Link to demo video
-├── presentation/         # Slide deck
-└── submission.yaml       # Structured submission metadata
-```
-
----
+├── demo/                  # Demo artifacts
+│   ├── screenshots/
+│   ├── demo-video-link.txt
+│   └── live-demo-url.txt
+├── presentation/          # Slide deck
+└── submission.yaml        # Structured submission metadata
 
 ## ⚡ How to Run
 
-> **Copy these exact steps from your [`docs/setup-guide.md`](docs/setup-guide.md)**
+### Backend
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/[your-repo].git
-cd [your-repo]
+cd src/backend
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload
 
-# 2. Install dependencies
-[your install command here]
+### Frontend
 
-# 3. Configure environment
-cp .env.example .env
-# Edit .env with your values
-
-# 4. Run the project
-[your run command here]
-```
-
----
+```bash
+cd src/frontend
+npm.cmd install
+npm.cmd run dev
 
 ## 🖥️ Demo
 
@@ -100,22 +90,21 @@ cp .env.example .env
 | 📹 Demo Video | [See demo/demo-video-link.txt](demo/demo-video-link.txt) |
 | 🌐 Live Demo | [See demo/live-demo-url.txt](demo/live-demo-url.txt) |
 | 🖼️ Screenshots | [See demo/screenshots/](demo/screenshots/) |
-| 📊 Presentation | [See presentation/slides.pdf](presentation/) |
+| 📊 Presentation | [See presentation/](presentation/) |
 
 ---
 
 ## ⚠️ Known Limitations
 
-> Be honest — judges appreciate transparency over overclaiming.
-
-- [Limitation 1: e.g., "Authentication is mocked — not production-ready"]
-- [Limitation 2: e.g., "Only tested on Chrome"]
-- [Limitation 3: e.g., "Feature X is scaffolded but not fully implemented"]
+- The current MVP uses synthetic threat-alert data rather than live defence or government data sources.
+- Alert correlation, false-positive detection, and prioritisation currently use local rules, heuristics, and weighted scoring.
+- MITRE ATT&CK mapping is based on local/sample mapping data.
+- The project is a hackathon prototype and is not intended for direct use with production defence systems.
 
 ---
 
 ## 🏅 What We're Most Proud Of
 
-[Tell the judges what part of your submission is strongest and worth paying close attention to.]
+We are most proud of creating an end-to-end defensive threat intelligence workflow that transforms large volumes of synthetic alerts into correlated, prioritized, and investigation-ready incidents. The combination of alert analysis, MITRE ATT&CK mapping, investigation views, and BLUF summaries demonstrates how IBM Bob can accelerate the development of a practical AI-powered cybersecurity solution.
 
 ---

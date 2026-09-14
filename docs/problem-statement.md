@@ -1,21 +1,51 @@
 # Problem Statement
 
-## Background
+## 1. Target Audience
 
-[Describe the broader context. What domain or industry does this problem belong to? What situation creates the problem?]
+CyberSentinel is designed for defence and security analysts who need to review and investigate large volumes of threat alerts from multiple sources.
 
-## The Problem
+## 2. The Problem
 
-[State the problem clearly and specifically. Avoid vague statements like "things are slow" — instead say "Operations teams spend an average of 45 minutes per incident diagnosing pipeline failures because logs are scattered across 6 different tools."]
+Security analysts may receive large numbers of alerts from SIEM systems, cyber sensors, satellite feeds, and intelligence reports. These alerts can arrive in different formats and may contain overlapping or related information.
 
-## Who is Affected
+Manually reviewing and correlating such alerts can make it difficult to identify genuine threats quickly. At the same time, false positives can consume valuable analyst time and attention.
 
-[Describe the specific user or persona experiencing this problem. Be concrete — not "developers" but "backend engineers managing CI/CD pipelines in enterprises with 50+ microservices."]
+The key challenge is to transform large volumes of multi-source alerts into a smaller number of meaningful, prioritized incidents that analysts can investigate efficiently.
 
-## Why It Matters
+## 3. Why Existing Workflows Are Challenging
 
-[What is the cost of this problem? Lost time? Revenue? Safety risk? Frustration? Quantify if possible.]
+Traditional alert-review workflows can require analysts to:
 
-## Why Existing Solutions Fall Short
+- Review alerts from multiple sources.
+- Understand different alert formats.
+- Identify relationships between related alerts.
+- Separate likely genuine threats from false positives.
+- Determine which incidents require the most attention.
+- Map observed activity to relevant MITRE ATT&CK techniques.
+- Prepare investigation summaries for decision-making.
 
-[Briefly explain what people currently do and why it doesn't fully solve the problem. This sets up why your solution is needed.]
+These activities can become difficult when alert volume increases.
+
+## 4. What CyberSentinel Addresses
+
+CyberSentinel provides an end-to-end defensive workflow that:
+
+1. Ingests synthetic multi-source threat alerts.
+2. Normalizes the alert information.
+3. Correlates related alerts.
+4. Identifies likely genuine threats and false positives.
+5. Prioritizes incidents using weighted scoring.
+6. Maps identified activity to MITRE ATT&CK techniques.
+7. Provides an investigation view with concise BLUF summaries.
+
+## 5. Scope
+
+The hackathon MVP focuses on demonstrating this workflow using synthetic threat-alert data.
+
+It is designed as a defensive cybersecurity prototype and does not connect to real defence, government, or production security systems.
+
+## 6. Why This Matters
+
+The goal is to help analysts move from large volumes of raw alerts toward a more focused and investigation-ready view of potential threats.
+
+By combining alert processing, correlation, prioritisation, MITRE ATT&CK mapping, and investigation summaries in one workflow, CyberSentinel demonstrates a practical approach to reducing analyst workload and improving threat-triage efficiency.

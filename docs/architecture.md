@@ -1,49 +1,117 @@
 # Architecture
 
-## System Architecture
-
-[Describe the overall architecture of your system. Replace the Mermaid diagram below with your actual architecture.]
+## 1. System Architecture
 
 ```mermaid
-graph TD
-    A[User / Browser] -->|HTTP| B[Frontend - React]
-    B -->|REST API| C[Backend - FastAPI]
-    C -->|SDK| D[watsonx.ai]
-    C -->|Query| E[PostgreSQL]
-    C -->|Publish| F[Slack Webhook]
-    D -->|Inference Result| C
-```
+flowchart TD
+    A[Synthetic Multi-Source Alerts] --> B[Alert Ingestion]
+    B --> C[Alert Normalization]
+    C --> D[Alert Correlation]
+    D --> E[False-Positive Detection]
+    E --> F[Threat Prioritisation]
+    F --> G[MITRE ATT&CK Mapping]
+    G --> H[Investigation View]
+    H --> I[BLUF Summary]
 
-## Components
+    J[React + Vite Frontend] --> K[FastAPI Backend]
+    K --> B
+    K --> H
+    
+    ## 2. Main Components
 
-| Component | Technology | Responsibility |
+| Component | Technology | Purpose |
 |---|---|---|
-| Frontend | [e.g., React 18] | [e.g., Dashboard UI, user interaction] |
-| Backend API | [e.g., FastAPI] | [e.g., Business logic, orchestration] |
-| AI / ML | [e.g., watsonx.ai] | [e.g., Anomaly scoring, classification] |
-| Database | [e.g., PostgreSQL] | [e.g., Storing pipeline events and scores] |
-| Notifications | [e.g., Slack API] | [e.g., Alerting on threshold breaches] |
+| Frontend | React + Vite + Tailwind CSS | Analyst dashboard and investigation interface |
+| Backend | Python + FastAPI | API layer and application logic |
+| Database | SQLite | Local application data storage |
+| Alert Pipeline | Python | Normalization, correlation, classification, and prioritisation |
+| MITRE Mapping | Local JSON/sample data | Maps threat activity to MITRE ATT&CK techniques |
+| Charts | Chart.js | Dashboard visualisation |
+| Data | Synthetic JSON/CSV | Controlled hackathon threat-alert dataset |
 
-## Data Flow
+## 3. End-to-End Data Flow
 
-[Describe how data moves through your system from input to output.]
+1. Synthetic alerts are loaded into the application.
+2. The backend ingests the alerts.
+3. Alerts are normalized into a consistent structure.
+4. Related alerts are correlated into potential incidents.
+5. Heuristic logic identifies likely false positives.
+6. Weighted scoring determines incident priority.
+7. Relevant MITRE ATT&CK techniques are mapped.
+8. The investigation interface presents incident evidence and analysis.
+9. A concise BLUF summary supports rapid understanding.
 
-1. [e.g., Pipeline logs are ingested via a webhook from GitHub Actions]
-2. [e.g., Logs are preprocessed and chunked into 512-token segments]
-3. [e.g., Each chunk is sent to the watsonx.ai inference endpoint]
-4. [e.g., Anomaly scores are stored in PostgreSQL]
-5. [e.g., The React dashboard polls the API every 30 seconds to refresh]
+## 4. Frontend Architecture
 
-## Security Considerations
+The React frontend provides:
 
-[Note any security decisions relevant to the architecture — even if basic.]
+- Dashboard
+- Alert list
+- Alert ingestion controls
+- Incident list
+- Investigation view
+- Priority information
+- MITRE ATT&CK information
+- BLUF summaries
 
-- [e.g., API keys stored in environment variables, never committed to git]
-- [e.g., All API routes require a Bearer token]
-- [e.g., Database credentials rotated via IBM Secrets Manager]
+The frontend communicates with the FastAPI backend through API requests.
 
-## Scalability Notes
+## 5. Backend Architecture
 
-[Optional: how would this scale beyond the hackathon prototype?]
+The FastAPI backend provides API endpoints for:
 
-[e.g., "The FastAPI backend is stateless and could be horizontally scaled behind a load balancer. The watsonx.ai calls are the bottleneck and would benefit from request batching."]
+- Dashboard information
+- Alert ingestion
+- Alert data
+- Incident information
+- Investigation data
+
+The backend connects the API layer with the threat-analysis pipeline and SQLite database.
+
+## 6. Threat Analysis Pipeline
+
+The threat analysis pipeline consists of the following stages:
+
+```text
+Input Alerts
+    ↓
+Normalization
+    ↓
+Correlation
+    ↓
+False-Positive Classification
+    ↓
+Weighted Prioritisation
+    ↓
+MITRE ATT&CK Mapping
+    ↓
+Investigation / BLUF
+
+## 7. Security Considerations
+
+The hackathon implementation uses synthetic data and does not connect to real defence or government systems.
+
+The prototype avoids storing real credentials or production threat intelligence.
+
+Environment-specific secrets should be kept outside the repository and should not be committed to Git.
+
+## 8. Scalability Considerations
+
+The current implementation is designed as a lightweight hackathon MVP.
+
+Future versions could improve scalability by:
+
+- Replacing SQLite with a production database.
+- Adding scalable message or event processing.
+- Connecting to live threat-intelligence feeds.
+- Improving correlation with advanced AI/ML techniques.
+- Adding authentication and role-based access control.
+- Deploying backend and frontend as
+
+## 9. IBM Bob in the Architecture Workflow
+
+IBM Bob supported the devlopment lifecycle by helping with architecture planning, implementation, code review, testig,
+and debugging.
+
+The resulting application remains a conventional React + FastAPI application with the the threat-analysis logic 
+implemented within the project source code.
